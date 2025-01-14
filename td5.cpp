@@ -33,6 +33,31 @@ unsigned int modelid;
 unsigned int viewid;
 unsigned int projid;
 
+#define NBMESHES 4
+
+struct shaderProg
+{
+  unsigned int progid;
+  unsigned int mvpid;
+  unsigned int mid;
+  unsigned int vid;
+  unsigned int pid;
+  unsigned int LightID;
+}shaders[NBMESHES];
+
+
+struct maillage
+{
+  shaderProg shader;
+  unsigned int vaoids; // VaoID qui contient les VBO où ce trouve ce maillage (et ses normales etc..) dans la VRAM
+  unsigned int nbtriangles;
+  float angle = 0.0f;
+  float scale = 0.0f; // stocke l'opération de normalisation de la taille du maillage (réalisé lors de la lecture du maillage)
+  float inc = 0.1f;
+  float x, y, z; // stocke la position du centre du  maillage (réalisé lors de la lecture du maillage) il faut utiliser cette info lors du dessin afin de toujours veiller à recentrer le maillage en (0,0,0)
+
+} maillages[NBMESHES];
+
 // Matrices 4x4 contenant les transformations.
 glm::mat4 model;
 glm::mat4 view;
@@ -52,53 +77,51 @@ float x, y, z;
 std::array< float, 3 > eye = { 0.0f, 0.0f, 5.0f };
 
 
+void displayMesh(const maillage& mesh, const glm::mat4& model)
+{
+    glUseProgram(mesh.shader.progid);
+
+    glm::mat4 mvp = proj * view * model;
+
+    glUniformMatrix4fv(mesh.shader.mvpid, 1, GL_FALSE, &mvp[0][0]);
+    glUniformMatrix4fv(mesh.shader.mid, 1, GL_FALSE, &model[0][0]);
+    glUniformMatrix4fv(mesh.shader.vid, 1, GL_FALSE, &view[0][0]);
+    glUniformMatrix4fv(mesh.shader.pid, 1, GL_FALSE, &proj[0][0]);
+
+    glBindVertexArray(mesh.vaoids);
+    glDrawElements(GL_TRIANGLES, mesh.nbtriangles * 3, GL_UNSIGNED_INT, 0);
+    glBindVertexArray(0);
+
+    check_gl_error();
+}
+
+
 void display()
 {
-    glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
-    //glPolygonMode(GL_FRONT_AND_BACK,GL_LINE);
-    // Positionnement de la caméra en ( 0.0f, 0.0f, 5.0f ),
-    // on regarde en direction du point ( 0.0f, 0.0f, 0.0f ),
-    // la tête est orienté suivant vers le haut l'axe y ( 0.0f, 1.0f, 0.0f ).
-    view = glm::lookAt( glm::vec3( eye[ 0 ], eye[ 1 ], eye[ 2 ] ), glm::vec3( eye[ 0 ], eye[ 1 ], eye[ 2 ]-1.0 ), glm::vec3( 0.0f, 1.0f, 0.0f ) );
-    
-    // initialisation de la matrice de modelisation
-    model = glm::mat4( 1.0f );
-    
-    // On recale le maillage à l'origine du repère
-    model = glm::translate( glm::mat4( 1.0f ), glm::vec3( -x, -y, -z ) ) * model;
-    
-    // Le modèle est mis à l'échelle
-    model = glm::scale(  glm::mat4( 1.0f ), glm::vec3( scale*3.5 ) ) * model ;
-    
-     // Le modele subit une rotation suivant l'axe z.
-    glm::mat4 rot=glm::rotate( glm::mat4( 1.0f ), glm::degrees( angle ), glm::vec3( 0.0f, 1.0f, 0.0f ) );
- 
-    model = glm::rotate( glm::mat4( 1.0f ), glm::degrees( angle ), glm::vec3( 0.0f, 1.0f, 0.0f ) ) * model;
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+    // Positionnement de la caméra
+    view = glm::lookAt(glm::vec3(eye[0], eye[1], eye[2]), glm::vec3(eye[0], eye[1], eye[2] - 1.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 
-    // Calcul de la matrice mvp.
-    mvp = proj * view * model;
-    
-    // tester aussi:  (quelle différence?)
-    //rep.trace_repere(proj*  view *rot);
-    rep.trace_repere(proj*  view);
-    
-    glUseProgram( progid );// Choix du shader à appliquer.
-    
-    glUniformMatrix4fv( mvpid , 1, GL_FALSE, &mvp[0][0]);// Passage de la matrice mvp au shader.
+    float decal = 1.25f;
 
-    // Passage de la matrice model au shader.
-    glUniformMatrix4fv( modelid, 1, GL_FALSE, &model[0][0] );
-    // Passage de la matrice view au shader.
-    glUniformMatrix4fv( viewid, 1, GL_FALSE, &view[0][0] );
-    // Passage de la matrice proj au shader.
-    glUniformMatrix4fv( projid, 1, GL_FALSE, &proj[0][0] );
+    // Afficher chaque maillage dans une section de l'écran
+    model = glm::mat4(1.0f);
+    model = glm::translate(model, glm::vec3(-decal, -decal, 0.0f));
+    displayMesh(maillages[0], model);
 
-    glBindVertexArray( vaoids[ 0 ] );//Choix du vao
+    model = glm::mat4(1.0f);
+    model = glm::translate(model, glm::vec3(decal, decal, 0.0f));
+    displayMesh(maillages[1], model);
 
-    glDrawElements( GL_TRIANGLES, nbtriangles*3, GL_UNSIGNED_INT, 0 );
+    model = glm::mat4(1.0f);
+    model = glm::translate(model, glm::vec3(-decal, decal, 0.0f));
+    displayMesh(maillages[2], model);
 
-    check_gl_error(); // pour le debugage d'openGL
+    model = glm::mat4(1.0f);
+    model = glm::translate(model, glm::vec3(decal, -decal, 0.0f));
+    model = glm::scale(model, glm::vec3(0.70f));
+    displayMesh(maillages[3], model);
 
     glutSwapBuffers();
 }
@@ -156,50 +179,42 @@ void special( int key, int x, int y )
 }
 
 
-void initVAOs()
+maillage initVAOs(shaderProg shader, std::string chemin)
 {
+    maillage vao;
+
     unsigned int vboids[ 4 ];
 
-    std::ifstream ifs( concat(MY_SHADER_PATH, "/meshes/milleniumfalcon.off" ));
+    std::ifstream ifs((MY_SHADER_PATH + chemin ));
     if (!ifs)
     {
-        throw std::runtime_error("can't find the meshe!! Check the name and the path of this file? ");
+        throw std::runtime_error("can't find the mesh!! Check the name and the path of this file? ");
     }
 
-    
     std::string off;
-
     unsigned int nbpoints, tmp;
 
     ifs >> off;
     ifs >> nbpoints;
-    ifs >> nbtriangles;
+    ifs >> vao.nbtriangles;
     ifs >> tmp;
 
-    std::cout<<nbtriangles;
     std::vector< float > vertices( nbpoints * 3 );
     std::vector< float > colors( nbpoints * 3 );
-    std::vector< unsigned int > indices( nbtriangles *3 );
+    std::vector< unsigned int > indices( vao.nbtriangles * 3 );
     std::vector< float > normals( nbpoints * 3 );
-
-    //std::fill( std::begin( normals ), std::end( normals ), 0.0f );
 
     for( unsigned int i = 0 ; i < vertices.size() ; ++i) {
         ifs >> vertices[ i ];
-
     }
 
-    for( unsigned int i = 0 ; i < nbtriangles ; ++i) {
+    for( unsigned int i = 0 ; i < vao.nbtriangles ; ++i) {
         ifs >> tmp;
         ifs >> indices[ i * 3 ];
         ifs >> indices[ i * 3 + 1 ];
         ifs >> indices[ i * 3 + 2 ];
-
     }
 
-    /**
-     * Calcul de la boîte englobante du modèle
-     */
     float dx, dy, dz;
     float xmin, xmax, ymin, ymax, zmin, zmax;
 
@@ -215,24 +230,17 @@ void initVAOs()
         if(zmax < vertices[i*3+2]) zmax = vertices[i*3+2];
     }
 
-    // calcul du centre de la boîte englobante
-
-    x = (xmax + xmin)/2.0f;
-    y = (ymax + ymin)/2.0f;
-    z = (zmax + zmin)/2.0f;
-
-    // calcul des dimensions de la boîte englobante
+    vao.x = (xmax + xmin) / 2.0f;
+    vao.y = (ymax + ymin) / 2.0f;
+    vao.z = (zmax + zmin) / 2.0f;
 
     dx = xmax - xmin;
     dy = ymax - ymin;
     dz = zmax - zmin;
 
-    // calcul du coefficient de mise à l'échelle
+    scale = 1.0f / fmax(dx, fmax(dy, dz));
+    vao.scale = scale;
 
-    scale = 1.0f/fmax(dx, fmax(dy, dz));
-std::cout<<scale;
-
-    // Calcul des normales.
     for( std::size_t i = 0 ; i < indices.size() ; i+=3 )
     {
         auto x0 = vertices[ 3 * indices [ i ]     ] - vertices[ 3 * indices [ i+1 ]     ];
@@ -278,64 +286,54 @@ std::cout<<scale;
         z *= norminv;
     }
 
-check_gl_error();
-    // Génération d'un Vertex Array Object contenant 3 Vertex Buffer Objects.
+    check_gl_error();
     glGenVertexArrays( 1, &vaoids[ 0 ] );
     glBindVertexArray( vaoids[ 0 ] );
+    vao.vaoids = vaoids[ 0 ];
 
-    // Génération de 4 VBO.
     glGenBuffers( 4, vboids );
-
-    // VBO contenant les sommets.
 
     glBindBuffer( GL_ARRAY_BUFFER, vboids[ 0 ] );
     glBufferData( GL_ARRAY_BUFFER, vertices.size() * sizeof( float ), vertices.data(), GL_STATIC_DRAW );
 
-    // L'attribut in_pos du vertex shader est associé aux données de ce VBO.
-    auto pos = glGetAttribLocation( progid, "in_pos" );
+    auto pos = glGetAttribLocation( shader.progid, "in_pos" );
     glVertexAttribPointer( pos, 3, GL_FLOAT, GL_FALSE, 0, 0 );
     glEnableVertexAttribArray( pos );
-check_gl_error();
-    // VBO contenant les couleurs.
-/*
-    glBindBuffer( GL_ARRAY_BUFFER, vboids[ 1 ] );
-    glBufferData( GL_ARRAY_BUFFER, colors.size() * sizeof( float ), colors.data(), GL_STATIC_DRAW );
-
-    // L'attribut in_color du vertex shader est associé aux données de ce VBO.
-    auto color = glGetAttribLocation( progid, "in_color" );
-    glVertexAttribPointer( color, 3, GL_FLOAT, GL_FALSE, 0, 0 );
-    glEnableVertexAttribArray( color );
-*/
- check_gl_error();
-    // VBO contenant les indices.
+    check_gl_error();
 
     glBindBuffer( GL_ELEMENT_ARRAY_BUFFER, vboids[ 2 ] );
     glBufferData( GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof( unsigned int ), indices.data(), GL_STATIC_DRAW );
-check_gl_error();
-    // VBO contenant les normales.
+    check_gl_error();
 
-   glBindBuffer( GL_ARRAY_BUFFER, vboids[ 3 ] );
+    glBindBuffer( GL_ARRAY_BUFFER, vboids[ 3 ] );
     glBufferData( GL_ARRAY_BUFFER, normals.size() * sizeof( float ), normals.data(), GL_STATIC_DRAW );
 
-    auto normal = glGetAttribLocation( progid, "in_normal" );
+    auto normal = glGetAttribLocation( shader.progid, "in_normal" );
     glVertexAttribPointer( normal, 3, GL_FLOAT, GL_TRUE, 0, 0 );
     glEnableVertexAttribArray( normal );
-check_gl_error();
+    check_gl_error();
     glBindVertexArray( 0 );
+
+    return vao;
 }
 
 
-void initShaders()
+shaderProg initShaders(std::string chemin_vert, std::string chemin_frag)
 {
+    shaderProg shader;
+    
     unsigned int vsid, fsid;
     int status;
     int logsize;
     std::string log;
 
-   std::ifstream vs_ifs( concat(MY_SHADER_PATH, "/shaders/basic.vert.glsl") );
-   std::ifstream fs_ifs( concat(MY_SHADER_PATH, "/shaders/basic.frag.glsl") );
+    std::ifstream vs_ifs((MY_SHADER_PATH + chemin_vert));
+    std::ifstream fs_ifs((MY_SHADER_PATH + chemin_frag));
 
-
+    if (!vs_ifs || !fs_ifs) {
+        std::cerr << "Error: could not open shader files." << std::endl;
+        return shader;
+    }
 
     auto begin = vs_ifs.tellg();
     vs_ifs.seekg( 0, std::ios::end );
@@ -391,19 +389,30 @@ void initShaders()
         std::cerr << log << std::endl;
     }
 
-    progid = glCreateProgram();
+    shader.progid = glCreateProgram();
 
-    glAttachShader( progid, vsid );
-    glAttachShader( progid, fsid );
+    glAttachShader( shader.progid, vsid );
+    glAttachShader( shader.progid, fsid );
 
-    glLinkProgram( progid );
+    glLinkProgram( shader.progid );
 
-    glUseProgram( progid );
+    glGetProgramiv(shader.progid, GL_LINK_STATUS, &status);
+    if (!status) {
+        std::cerr << "Error: shader program linking failed.\n";
+        glGetProgramiv(shader.progid, GL_INFO_LOG_LENGTH, &logsize);
+        log.resize(logsize);
+        glGetProgramInfoLog(shader.progid, log.size(), &logsize, &log[0]);
+        std::cerr << log << std::endl;
+    }
 
-    mvpid = glGetUniformLocation( progid, "mvp" );
-    projid = glGetUniformLocation( progid, "proj" );
-    viewid = glGetUniformLocation( progid, "view" );
-    modelid = glGetUniformLocation( progid, "model" );
+    glUseProgram( shader.progid );
+
+    shader.mvpid = glGetUniformLocation( shader.progid, "mvp" );
+    shader.pid = glGetUniformLocation( shader.progid, "proj" );
+    shader.vid = glGetUniformLocation( shader.progid, "view" );
+    shader.mid = glGetUniformLocation( shader.progid, "model" );
+
+    return shader;
 }
 
 
@@ -413,34 +422,44 @@ int main( int argc, char * argv[] )
 #if defined(__APPLE__) && defined(ENABLE_SHADERS)
     glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA|GLUT_3_2_CORE_PROFILE);
 #else
-
-glutInitContextVersion( 3, 2 );
-//glutInitContextVersion( 4, 5 );
+    glutInitContextVersion( 3, 2 );
     glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);
-    glewInit();
 #endif
 
     glutInitWindowSize( 640, 480 );
+    glutCreateWindow( argv[ 0 ] );
 
-
-    glutCreateWindow( argv[ 0 ]  );
+#if not defined(__APPLE__)
+    glewExperimental = GL_TRUE;
+    GLenum err = glewInit();
+    if (err != GLEW_OK) {
+        std::cerr << "Error initializing GLEW: " << glewGetErrorString(err) << std::endl;
+        return -1;
+    }
+#endif
 
     glutDisplayFunc( display );
     glutReshapeFunc( reshape );
     glutIdleFunc( idle );
     glutSpecialFunc( special );
 
-    // Initialisation de la bibliothèque GLEW.
-#if not defined(__APPLE__)
-    glewInit();
-#endif
-
     glEnable(GL_DEPTH_TEST);
-check_gl_error();
-    initShaders();
     check_gl_error();
-    initVAOs();
+
+    shaders[0] = initShaders("/shaders/phong.vert.glsl", "/shaders/phong.frag.glsl");
+    maillages[0] = initVAOs(shaders[0], "/meshes/space_shuttle2.off");
+
+    shaders[1] = initShaders("/shaders/phong.vert.glsl", "/shaders/toon.frag.glsl");
+    maillages[1] = initVAOs(shaders[1], "/meshes/space_station2.off");
+
+    shaders[2] = initShaders("/shaders/phong.vert.glsl", "/shaders/phongVert.frag.glsl");
+    maillages[2] = initVAOs(shaders[2], "/meshes/milleniumfalcon.off");
+
+    shaders[3] = initShaders("/shaders/phong.vert.glsl", "/shaders/phongRouge.frag.glsl");
+    maillages[3] = initVAOs(shaders[3], "/meshes/rabbit.off");
+
     check_gl_error();
+
     rep.init();
     check_gl_error();
 
