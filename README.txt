@@ -12,7 +12,6 @@ cd BUILD
 cmake ..
 make 
 
-
 Pour executer:
 make check
 

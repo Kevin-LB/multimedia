@@ -77,24 +77,22 @@ float x, y, z;
 std::array< float, 3 > eye = { 0.0f, 0.0f, 5.0f };
 
 
-void displayMesh(const maillage& mesh, const glm::mat4& model)
-{
-    glUseProgram(mesh.shader.progid);
+void displayMesh(maillage maillage, glm::mat4 model){
+    
+    glUseProgram(maillage.shader.progid); 
 
-    // Calculer la matrice MVP (Model-View-Projection)
-    glm::mat4 mvp = proj * view * model;
+    maillage.angle = angle;
 
-    glUniformMatrix4fv(mesh.shader.mvpid, 1, GL_FALSE, &mvp[0][0]);
-    glUniformMatrix4fv(mesh.shader.mid, 1, GL_FALSE, &model[0][0]);
-    glUniformMatrix4fv(mesh.shader.vid, 1, GL_FALSE, &view[0][0]);
-    glUniformMatrix4fv(mesh.shader.pid, 1, GL_FALSE, &proj[0][0]);
+    model = glm::rotate(model, maillage.angle, glm::vec3(1.0f, 1.0f, 0.0f));
+    model = glm::scale(model, glm::vec3(maillage.scale*3));
+    model = glm::translate(model, glm::vec3(-maillage.x, -maillage.y, -maillage.z));
 
-    glBindVertexArray(mesh.vaoids);
-    glDrawElements(GL_TRIANGLES, nbtriangles * 3, GL_UNSIGNED_INT, nullptr);
-    glBindVertexArray(0);
-    glUseProgram(0);
+    glUniformMatrix4fv(maillage.shader.mid, 1, GL_FALSE, &model[0][0]);
+    glUniformMatrix4fv(maillage.shader.vid, 1, GL_FALSE, &view[0][0]);
+    glUniformMatrix4fv(maillage.shader.pid, 1, GL_FALSE, &proj[0][0]);
 
-    check_gl_error();
+    glBindVertexArray(maillage.vaoids);
+    glDrawElements(GL_TRIANGLES, maillage.nbtriangles * 3, GL_UNSIGNED_INT, 0);
 }
 
 
