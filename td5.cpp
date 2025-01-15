@@ -81,6 +81,7 @@ void displayMesh(const maillage& mesh, const glm::mat4& model)
 {
     glUseProgram(mesh.shader.progid);
 
+    // Calculer la matrice MVP (Model-View-Projection)
     glm::mat4 mvp = proj * view * model;
 
     glUniformMatrix4fv(mesh.shader.mvpid, 1, GL_FALSE, &mvp[0][0]);
@@ -89,8 +90,9 @@ void displayMesh(const maillage& mesh, const glm::mat4& model)
     glUniformMatrix4fv(mesh.shader.pid, 1, GL_FALSE, &proj[0][0]);
 
     glBindVertexArray(mesh.vaoids);
-    glDrawElements(GL_TRIANGLES, mesh.nbtriangles * 3, GL_UNSIGNED_INT, 0);
+    glDrawElements(GL_TRIANGLES, nbtriangles * 3, GL_UNSIGNED_INT, nullptr);
     glBindVertexArray(0);
+    glUseProgram(0);
 
     check_gl_error();
 }
@@ -123,6 +125,7 @@ void display()
     model = glm::scale(model, glm::vec3(0.70f));
     displayMesh(maillages[3], model);
 
+    check_gl_error();
     glutSwapBuffers();
 }
 
@@ -196,19 +199,20 @@ maillage initVAOs(shaderProg shader, std::string chemin)
 
     ifs >> off;
     ifs >> nbpoints;
-    ifs >> vao.nbtriangles;
+    ifs >> nbtriangles;
     ifs >> tmp;
 
+    std::cout << nbtriangles;
     std::vector< float > vertices( nbpoints * 3 );
     std::vector< float > colors( nbpoints * 3 );
-    std::vector< unsigned int > indices( vao.nbtriangles * 3 );
+    std::vector< unsigned int > indices( nbtriangles * 3 );
     std::vector< float > normals( nbpoints * 3 );
 
     for( unsigned int i = 0 ; i < vertices.size() ; ++i) {
         ifs >> vertices[ i ];
     }
 
-    for( unsigned int i = 0 ; i < vao.nbtriangles ; ++i) {
+    for( unsigned int i = 0 ; i < nbtriangles ; ++i) {
         ifs >> tmp;
         ifs >> indices[ i * 3 ];
         ifs >> indices[ i * 3 + 1 ];
@@ -230,16 +234,15 @@ maillage initVAOs(shaderProg shader, std::string chemin)
         if(zmax < vertices[i*3+2]) zmax = vertices[i*3+2];
     }
 
-    vao.x = (xmax + xmin) / 2.0f;
-    vao.y = (ymax + ymin) / 2.0f;
-    vao.z = (zmax + zmin) / 2.0f;
+    x = (xmax + xmin) / 2.0f;
+    y = (ymax + ymin) / 2.0f;
+    z = (zmax + zmin) / 2.0f;
 
     dx = xmax - xmin;
     dy = ymax - ymin;
     dz = zmax - zmin;
 
     scale = 1.0f / fmax(dx, fmax(dy, dz));
-    vao.scale = scale;
 
     for( std::size_t i = 0 ; i < indices.size() ; i+=3 )
     {
@@ -289,7 +292,6 @@ maillage initVAOs(shaderProg shader, std::string chemin)
     check_gl_error();
     glGenVertexArrays( 1, &vaoids[ 0 ] );
     glBindVertexArray( vaoids[ 0 ] );
-    vao.vaoids = vaoids[ 0 ];
 
     glGenBuffers( 4, vboids );
 
@@ -313,6 +315,16 @@ maillage initVAOs(shaderProg shader, std::string chemin)
     glEnableVertexAttribArray( normal );
     check_gl_error();
     glBindVertexArray( 0 );
+
+    vao.shader = shader;
+    vao.vaoids = vaoids[ 0 ];
+    vao.nbtriangles = nbtriangles;
+    vao.x = x;
+    vao.y = y;
+    vao.z = z;
+    vao.scale = scale;
+    vao.angle = angle;
+    vao.inc = inc;
 
     return vao;
 }
@@ -389,28 +401,30 @@ shaderProg initShaders(std::string chemin_vert, std::string chemin_frag)
         std::cerr << log << std::endl;
     }
 
-    shader.progid = glCreateProgram();
+    progid = glCreateProgram();
 
-    glAttachShader( shader.progid, vsid );
-    glAttachShader( shader.progid, fsid );
+    glAttachShader( progid, vsid );
+    glAttachShader( progid, fsid );
 
-    glLinkProgram( shader.progid );
+    glLinkProgram( progid );
 
-    glGetProgramiv(shader.progid, GL_LINK_STATUS, &status);
+    glGetProgramiv(progid, GL_LINK_STATUS, &status);
     if (!status) {
         std::cerr << "Error: shader program linking failed.\n";
-        glGetProgramiv(shader.progid, GL_INFO_LOG_LENGTH, &logsize);
+        glGetProgramiv(progid, GL_INFO_LOG_LENGTH, &logsize);
         log.resize(logsize);
-        glGetProgramInfoLog(shader.progid, log.size(), &logsize, &log[0]);
+        glGetProgramInfoLog(progid, log.size(), &logsize, &log[0]);
         std::cerr << log << std::endl;
     }
 
-    glUseProgram( shader.progid );
-
+    shader.progid = progid;
     shader.mvpid = glGetUniformLocation( shader.progid, "mvp" );
     shader.pid = glGetUniformLocation( shader.progid, "proj" );
     shader.vid = glGetUniformLocation( shader.progid, "view" );
     shader.mid = glGetUniformLocation( shader.progid, "model" );
+    shader.LightID = glGetUniformLocation( shader.progid, "LightPosition_worldspace" );
+
+    glUseProgram( shader.progid );
 
     return shader;
 }
