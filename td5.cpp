@@ -416,7 +416,6 @@ shaderProg initShaders(std::string chemin_vert, std::string chemin_frag)
     }
 
     shader.progid = progid;
-    shader.mvpid = glGetUniformLocation( shader.progid, "mvp" );
     shader.pid = glGetUniformLocation( shader.progid, "proj" );
     shader.vid = glGetUniformLocation( shader.progid, "view" );
     shader.mid = glGetUniformLocation( shader.progid, "model" );

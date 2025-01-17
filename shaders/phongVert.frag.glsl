@@ -1,43 +1,39 @@
 #version 150 core
-// version du langage GLSL utilisée, ici 4.5
 
-// mvp est la variable contenant la matrice proj*view*model
-// uniform indique que c'est la même matrice pour tous les points
+in vec4 color;
 
-uniform mat4 mvp;
-uniform mat4 model;
-uniform mat4 view;
-uniform mat4 proj;
+out vec4 frag_color;
 
-// in indique que la variable est fournie en entrée pour chaque point
-// chaque point possède une position 3D
+in vec3 lightDir;
+in vec3 eyeVec;
+in vec3 out_normal;
 
-in vec3 in_pos;
-in vec3 in_normal;
-out vec4 color;
-out vec3 lightDir;
-out vec3 eyeVec;
-out vec3 out_normal;
-
-float random (vec2 st) {
-return fract(sin(dot(st.xy,
-vec2(12.9898,78.233)))*
-43758.5453123);
+vec4 toonify(float intensity) {
+    if (intensity > 0.98)
+        return vec4(0.5, 0.8, 0.5, 1.0);
+    else if (intensity > 0.5)
+        return vec4(0.3, 0.6, 0.3, 1.0);
+    else if (intensity > 0.25)
+        return vec4(0.2, 0.4, 0.2, 1.0);
+    else
+        return vec4(0.1, 0.2, 0.1, 1.0);
 }
 
 void main(void)
 {
-  vec3 inverted_normal = -in_normal;
-  color = vec4(inverted_normal, 0.0);
-  //   color =in_pos;
-  // calcul de la position du point une fois toutes les transformations appliquées
-  
-  gl_Position = proj*view*model * (vec4(in_pos, 1.0)+0.1*random(in_pos.xy));
+    vec3 L = normalize(lightDir);
+    vec3 N = normalize(out_normal);
 
-  vec4 vVertex = view*model * vec4(in_pos, 1.0);
-  eyeVec = -vVertex.xyz;
-  vec4 LightSource_position=vec4(0.0,0.0,10.0,0.0);
-  lightDir=vec3(LightSource_position.xyz - vVertex.xyz);
+    float intensity = max(dot(L, N), 0.0);
 
-  out_normal = vec3(view*model*vec4(in_normal.x+0.5*random(in_pos.xy),in_normal.y+0.5*random(in_pos.xz),in_normal.z+0.5*random(in_pos.yz), 0.0));
+    vec3 E = normalize(eyeVec);
+    vec3 R = reflect(-L, N);
+    float specular = pow(max(dot(R, E), 0.0), 2.0);
+
+    vec4 toon_color = toonify(intensity);
+    vec4 final_color = vec4(0.2, 0.2, 0.2, 1.0);
+    final_color += toon_color * specular;
+    final_color += 0.6 * intensity * toon_color;
+
+    frag_color = final_color;
 }
