@@ -4,7 +4,7 @@
 # compile CXX with /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/Users/kevvv/Desktop/cours/Semestre_5/Multimedia/canevasTD5/BUILD -I/opt/homebrew/include -F/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk/System/Library/Frameworks -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk/System/Library/Frameworks/GLUT.framework/Headers -isystem /opt/homebrew/Cellar/opencv/4.10.0_13/include/opencv4
+CXX_INCLUDES = -I/Users/kevvv/Desktop/cours/Semestre_5/Multimedia/TD_Opengl_2024_LE-BRETON_Kevin/canevasTD5/BUILD -I/opt/homebrew/include -F/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk/System/Library/Frameworks -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk/System/Library/Frameworks/GLUT.framework/Headers -isystem /opt/homebrew/Cellar/opencv/4.10.0_13/include/opencv4
 
 CXX_FLAGSarm64 =  -D__gl_h_ -DGL_DO_NOT_WARN_IF_MULTI_GL_VERSION_HEADERS_INCLUDED  -g -std=gnu++11 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk   -std=c++17
 

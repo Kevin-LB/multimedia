@@ -57,10 +57,10 @@ RM = /opt/homebrew/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/kevvv/Desktop/cours/Semestre_5/Multimedia/canevasTD5
+CMAKE_SOURCE_DIR = /Users/kevvv/Desktop/cours/Semestre_5/Multimedia/TD_Opengl_2024_LE-BRETON_Kevin/canevasTD5
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/kevvv/Desktop/cours/Semestre_5/Multimedia/canevasTD5/BUILD
+CMAKE_BINARY_DIR = /Users/kevvv/Desktop/cours/Semestre_5/Multimedia/TD_Opengl_2024_LE-BRETON_Kevin/canevasTD5/BUILD
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -97,9 +97,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/kevvv/Desktop/cours/Semestre_5/Multimedia/canevasTD5/BUILD/CMakeFiles /Users/kevvv/Desktop/cours/Semestre_5/Multimedia/canevasTD5/BUILD//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/kevvv/Desktop/cours/Semestre_5/Multimedia/TD_Opengl_2024_LE-BRETON_Kevin/canevasTD5/BUILD/CMakeFiles /Users/kevvv/Desktop/cours/Semestre_5/Multimedia/TD_Opengl_2024_LE-BRETON_Kevin/canevasTD5/BUILD//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/kevvv/Desktop/cours/Semestre_5/Multimedia/canevasTD5/BUILD/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/kevvv/Desktop/cours/Semestre_5/Multimedia/TD_Opengl_2024_LE-BRETON_Kevin/canevasTD5/BUILD/CMakeFiles 0
 .PHONY : all
 
 # The main clean target

@@ -8,9 +8,9 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/Users/kevvv/Desktop/cours/Semestre_5/Multimedia/canevasTD5/GLError.cpp" "CMakeFiles/td.dir/GLError.cpp.o" "gcc" "CMakeFiles/td.dir/GLError.cpp.o.d"
-  "/Users/kevvv/Desktop/cours/Semestre_5/Multimedia/canevasTD5/repere.cpp" "CMakeFiles/td.dir/repere.cpp.o" "gcc" "CMakeFiles/td.dir/repere.cpp.o.d"
-  "/Users/kevvv/Desktop/cours/Semestre_5/Multimedia/canevasTD5/td5.cpp" "CMakeFiles/td.dir/td5.cpp.o" "gcc" "CMakeFiles/td.dir/td5.cpp.o.d"
+  "/Users/kevvv/Desktop/cours/Semestre_5/Multimedia/TD_Opengl_2024_LE-BRETON_Kevin/canevasTD5/GLError.cpp" "CMakeFiles/td.dir/GLError.cpp.o" "gcc" "CMakeFiles/td.dir/GLError.cpp.o.d"
+  "/Users/kevvv/Desktop/cours/Semestre_5/Multimedia/TD_Opengl_2024_LE-BRETON_Kevin/canevasTD5/repere.cpp" "CMakeFiles/td.dir/repere.cpp.o" "gcc" "CMakeFiles/td.dir/repere.cpp.o.d"
+  "/Users/kevvv/Desktop/cours/Semestre_5/Multimedia/TD_Opengl_2024_LE-BRETON_Kevin/canevasTD5/td5.cpp" "CMakeFiles/td.dir/td5.cpp.o" "gcc" "CMakeFiles/td.dir/td5.cpp.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

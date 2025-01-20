@@ -53,10 +53,10 @@ RM = /opt/homebrew/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/kevvv/Desktop/cours/Semestre_5/Multimedia/canevasTD5
+CMAKE_SOURCE_DIR = /Users/kevvv/Desktop/cours/Semestre_5/Multimedia/TD_Opengl_2024_LE-BRETON_Kevin/canevasTD5
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/kevvv/Desktop/cours/Semestre_5/Multimedia/canevasTD5/BUILD
+CMAKE_BINARY_DIR = /Users/kevvv/Desktop/cours/Semestre_5/Multimedia/TD_Opengl_2024_LE-BRETON_Kevin/canevasTD5/BUILD
 
 # Include any dependencies generated for this target.
 include CMakeFiles/td.dir/depend.make
@@ -73,46 +73,46 @@ CMakeFiles/td.dir/codegen:
 .PHONY : CMakeFiles/td.dir/codegen
 
 CMakeFiles/td.dir/GLError.cpp.o: CMakeFiles/td.dir/flags.make
-CMakeFiles/td.dir/GLError.cpp.o: /Users/kevvv/Desktop/cours/Semestre_5/Multimedia/canevasTD5/GLError.cpp
+CMakeFiles/td.dir/GLError.cpp.o: /Users/kevvv/Desktop/cours/Semestre_5/Multimedia/TD_Opengl_2024_LE-BRETON_Kevin/canevasTD5/GLError.cpp
 CMakeFiles/td.dir/GLError.cpp.o: CMakeFiles/td.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/kevvv/Desktop/cours/Semestre_5/Multimedia/canevasTD5/BUILD/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/td.dir/GLError.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/td.dir/GLError.cpp.o -MF CMakeFiles/td.dir/GLError.cpp.o.d -o CMakeFiles/td.dir/GLError.cpp.o -c /Users/kevvv/Desktop/cours/Semestre_5/Multimedia/canevasTD5/GLError.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/kevvv/Desktop/cours/Semestre_5/Multimedia/TD_Opengl_2024_LE-BRETON_Kevin/canevasTD5/BUILD/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/td.dir/GLError.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/td.dir/GLError.cpp.o -MF CMakeFiles/td.dir/GLError.cpp.o.d -o CMakeFiles/td.dir/GLError.cpp.o -c /Users/kevvv/Desktop/cours/Semestre_5/Multimedia/TD_Opengl_2024_LE-BRETON_Kevin/canevasTD5/GLError.cpp
 
 CMakeFiles/td.dir/GLError.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/td.dir/GLError.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/kevvv/Desktop/cours/Semestre_5/Multimedia/canevasTD5/GLError.cpp > CMakeFiles/td.dir/GLError.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/kevvv/Desktop/cours/Semestre_5/Multimedia/TD_Opengl_2024_LE-BRETON_Kevin/canevasTD5/GLError.cpp > CMakeFiles/td.dir/GLError.cpp.i
 
 CMakeFiles/td.dir/GLError.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/td.dir/GLError.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/kevvv/Desktop/cours/Semestre_5/Multimedia/canevasTD5/GLError.cpp -o CMakeFiles/td.dir/GLError.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/kevvv/Desktop/cours/Semestre_5/Multimedia/TD_Opengl_2024_LE-BRETON_Kevin/canevasTD5/GLError.cpp -o CMakeFiles/td.dir/GLError.cpp.s
 
 CMakeFiles/td.dir/repere.cpp.o: CMakeFiles/td.dir/flags.make
-CMakeFiles/td.dir/repere.cpp.o: /Users/kevvv/Desktop/cours/Semestre_5/Multimedia/canevasTD5/repere.cpp
+CMakeFiles/td.dir/repere.cpp.o: /Users/kevvv/Desktop/cours/Semestre_5/Multimedia/TD_Opengl_2024_LE-BRETON_Kevin/canevasTD5/repere.cpp
 CMakeFiles/td.dir/repere.cpp.o: CMakeFiles/td.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/kevvv/Desktop/cours/Semestre_5/Multimedia/canevasTD5/BUILD/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/td.dir/repere.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/td.dir/repere.cpp.o -MF CMakeFiles/td.dir/repere.cpp.o.d -o CMakeFiles/td.dir/repere.cpp.o -c /Users/kevvv/Desktop/cours/Semestre_5/Multimedia/canevasTD5/repere.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/kevvv/Desktop/cours/Semestre_5/Multimedia/TD_Opengl_2024_LE-BRETON_Kevin/canevasTD5/BUILD/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/td.dir/repere.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/td.dir/repere.cpp.o -MF CMakeFiles/td.dir/repere.cpp.o.d -o CMakeFiles/td.dir/repere.cpp.o -c /Users/kevvv/Desktop/cours/Semestre_5/Multimedia/TD_Opengl_2024_LE-BRETON_Kevin/canevasTD5/repere.cpp
 
 CMakeFiles/td.dir/repere.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/td.dir/repere.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/kevvv/Desktop/cours/Semestre_5/Multimedia/canevasTD5/repere.cpp > CMakeFiles/td.dir/repere.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/kevvv/Desktop/cours/Semestre_5/Multimedia/TD_Opengl_2024_LE-BRETON_Kevin/canevasTD5/repere.cpp > CMakeFiles/td.dir/repere.cpp.i
 
 CMakeFiles/td.dir/repere.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/td.dir/repere.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/kevvv/Desktop/cours/Semestre_5/Multimedia/canevasTD5/repere.cpp -o CMakeFiles/td.dir/repere.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/kevvv/Desktop/cours/Semestre_5/Multimedia/TD_Opengl_2024_LE-BRETON_Kevin/canevasTD5/repere.cpp -o CMakeFiles/td.dir/repere.cpp.s
 
 CMakeFiles/td.dir/td5.cpp.o: CMakeFiles/td.dir/flags.make
-CMakeFiles/td.dir/td5.cpp.o: /Users/kevvv/Desktop/cours/Semestre_5/Multimedia/canevasTD5/td5.cpp
+CMakeFiles/td.dir/td5.cpp.o: /Users/kevvv/Desktop/cours/Semestre_5/Multimedia/TD_Opengl_2024_LE-BRETON_Kevin/canevasTD5/td5.cpp
 CMakeFiles/td.dir/td5.cpp.o: CMakeFiles/td.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/kevvv/Desktop/cours/Semestre_5/Multimedia/canevasTD5/BUILD/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/td.dir/td5.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/td.dir/td5.cpp.o -MF CMakeFiles/td.dir/td5.cpp.o.d -o CMakeFiles/td.dir/td5.cpp.o -c /Users/kevvv/Desktop/cours/Semestre_5/Multimedia/canevasTD5/td5.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/kevvv/Desktop/cours/Semestre_5/Multimedia/TD_Opengl_2024_LE-BRETON_Kevin/canevasTD5/BUILD/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/td.dir/td5.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/td.dir/td5.cpp.o -MF CMakeFiles/td.dir/td5.cpp.o.d -o CMakeFiles/td.dir/td5.cpp.o -c /Users/kevvv/Desktop/cours/Semestre_5/Multimedia/TD_Opengl_2024_LE-BRETON_Kevin/canevasTD5/td5.cpp
 
 CMakeFiles/td.dir/td5.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/td.dir/td5.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/kevvv/Desktop/cours/Semestre_5/Multimedia/canevasTD5/td5.cpp > CMakeFiles/td.dir/td5.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/kevvv/Desktop/cours/Semestre_5/Multimedia/TD_Opengl_2024_LE-BRETON_Kevin/canevasTD5/td5.cpp > CMakeFiles/td.dir/td5.cpp.i
 
 CMakeFiles/td.dir/td5.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/td.dir/td5.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/kevvv/Desktop/cours/Semestre_5/Multimedia/canevasTD5/td5.cpp -o CMakeFiles/td.dir/td5.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/kevvv/Desktop/cours/Semestre_5/Multimedia/TD_Opengl_2024_LE-BRETON_Kevin/canevasTD5/td5.cpp -o CMakeFiles/td.dir/td5.cpp.s
 
 # Object files for target td
 td_OBJECTS = \
@@ -184,7 +184,7 @@ td: /opt/homebrew/lib/libopencv_photo.4.10.0.dylib
 td: /opt/homebrew/lib/libopencv_imgproc.4.10.0.dylib
 td: /opt/homebrew/lib/libopencv_core.4.10.0.dylib
 td: CMakeFiles/td.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/kevvv/Desktop/cours/Semestre_5/Multimedia/canevasTD5/BUILD/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable td"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/kevvv/Desktop/cours/Semestre_5/Multimedia/TD_Opengl_2024_LE-BRETON_Kevin/canevasTD5/BUILD/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable td"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/td.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -196,6 +196,6 @@ CMakeFiles/td.dir/clean:
 .PHONY : CMakeFiles/td.dir/clean
 
 CMakeFiles/td.dir/depend:
-	cd /Users/kevvv/Desktop/cours/Semestre_5/Multimedia/canevasTD5/BUILD && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/kevvv/Desktop/cours/Semestre_5/Multimedia/canevasTD5 /Users/kevvv/Desktop/cours/Semestre_5/Multimedia/canevasTD5 /Users/kevvv/Desktop/cours/Semestre_5/Multimedia/canevasTD5/BUILD /Users/kevvv/Desktop/cours/Semestre_5/Multimedia/canevasTD5/BUILD /Users/kevvv/Desktop/cours/Semestre_5/Multimedia/canevasTD5/BUILD/CMakeFiles/td.dir/DependInfo.cmake "--color=$(COLOR)"
+	cd /Users/kevvv/Desktop/cours/Semestre_5/Multimedia/TD_Opengl_2024_LE-BRETON_Kevin/canevasTD5/BUILD && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/kevvv/Desktop/cours/Semestre_5/Multimedia/TD_Opengl_2024_LE-BRETON_Kevin/canevasTD5 /Users/kevvv/Desktop/cours/Semestre_5/Multimedia/TD_Opengl_2024_LE-BRETON_Kevin/canevasTD5 /Users/kevvv/Desktop/cours/Semestre_5/Multimedia/TD_Opengl_2024_LE-BRETON_Kevin/canevasTD5/BUILD /Users/kevvv/Desktop/cours/Semestre_5/Multimedia/TD_Opengl_2024_LE-BRETON_Kevin/canevasTD5/BUILD /Users/kevvv/Desktop/cours/Semestre_5/Multimedia/TD_Opengl_2024_LE-BRETON_Kevin/canevasTD5/BUILD/CMakeFiles/td.dir/DependInfo.cmake "--color=$(COLOR)"
 .PHONY : CMakeFiles/td.dir/depend
 

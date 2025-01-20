@@ -1,6 +1,6 @@
 CMakeFiles/td.dir/repere.cpp.o: \
-  /Users/kevvv/Desktop/cours/Semestre_5/Multimedia/canevasTD5/repere.cpp \
-  /Users/kevvv/Desktop/cours/Semestre_5/Multimedia/canevasTD5/repere.h \
+  /Users/kevvv/Desktop/cours/Semestre_5/Multimedia/TD_Opengl_2024_LE-BRETON_Kevin/canevasTD5/repere.cpp \
+  /Users/kevvv/Desktop/cours/Semestre_5/Multimedia/TD_Opengl_2024_LE-BRETON_Kevin/canevasTD5/repere.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk/usr/include/c++/v1/iostream \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk/usr/include/c++/v1/__assert \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk/usr/include/c++/v1/__assertion_handler \

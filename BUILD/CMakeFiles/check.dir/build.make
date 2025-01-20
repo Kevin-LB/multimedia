@@ -53,10 +53,10 @@ RM = /opt/homebrew/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/kevvv/Desktop/cours/Semestre_5/Multimedia/canevasTD5
+CMAKE_SOURCE_DIR = /Users/kevvv/Desktop/cours/Semestre_5/Multimedia/TD_Opengl_2024_LE-BRETON_Kevin/canevasTD5
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/kevvv/Desktop/cours/Semestre_5/Multimedia/canevasTD5/BUILD
+CMAKE_BINARY_DIR = /Users/kevvv/Desktop/cours/Semestre_5/Multimedia/TD_Opengl_2024_LE-BRETON_Kevin/canevasTD5/BUILD
 
 # Utility rule file for check.
 
@@ -85,6 +85,6 @@ CMakeFiles/check.dir/clean:
 .PHONY : CMakeFiles/check.dir/clean
 
 CMakeFiles/check.dir/depend:
-	cd /Users/kevvv/Desktop/cours/Semestre_5/Multimedia/canevasTD5/BUILD && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/kevvv/Desktop/cours/Semestre_5/Multimedia/canevasTD5 /Users/kevvv/Desktop/cours/Semestre_5/Multimedia/canevasTD5 /Users/kevvv/Desktop/cours/Semestre_5/Multimedia/canevasTD5/BUILD /Users/kevvv/Desktop/cours/Semestre_5/Multimedia/canevasTD5/BUILD /Users/kevvv/Desktop/cours/Semestre_5/Multimedia/canevasTD5/BUILD/CMakeFiles/check.dir/DependInfo.cmake "--color=$(COLOR)"
+	cd /Users/kevvv/Desktop/cours/Semestre_5/Multimedia/TD_Opengl_2024_LE-BRETON_Kevin/canevasTD5/BUILD && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/kevvv/Desktop/cours/Semestre_5/Multimedia/TD_Opengl_2024_LE-BRETON_Kevin/canevasTD5 /Users/kevvv/Desktop/cours/Semestre_5/Multimedia/TD_Opengl_2024_LE-BRETON_Kevin/canevasTD5 /Users/kevvv/Desktop/cours/Semestre_5/Multimedia/TD_Opengl_2024_LE-BRETON_Kevin/canevasTD5/BUILD /Users/kevvv/Desktop/cours/Semestre_5/Multimedia/TD_Opengl_2024_LE-BRETON_Kevin/canevasTD5/BUILD /Users/kevvv/Desktop/cours/Semestre_5/Multimedia/TD_Opengl_2024_LE-BRETON_Kevin/canevasTD5/BUILD/CMakeFiles/check.dir/DependInfo.cmake "--color=$(COLOR)"
 .PHONY : CMakeFiles/check.dir/depend
 
